@@ -100,7 +100,7 @@ public class Menu {
 				produtos.verCarrinho();
 				break;
 			default:
-				System.out.println(Cores.TEXT_RED_BOLD + "\nOpção invalida!\n");
+				System.out.println(Cores.TEXT_RED + "\nOpção invalida!\n");
 				keyPress();
 				break;
 			}
@@ -113,7 +113,7 @@ public class Menu {
 			System.out.println(Cores.TEXT_RESET + "\n\nPressione Enter para Continuar...");
 			System.in.read();
 		} catch (IOException e) {
-			System.out.println("Você pressionou uma tecla diferente de enter!");
+			System.out.println(Cores.TEXT_RED + "Você pressionou uma tecla diferente de enter!");
 		}
 	}
 

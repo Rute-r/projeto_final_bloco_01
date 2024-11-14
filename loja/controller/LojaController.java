@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import loja.model.Produto;
 import loja.repository.LojaRepository;
+import loja.util.Cores;
 
 public class LojaController implements LojaRepository {
 
@@ -14,7 +15,7 @@ public class LojaController implements LojaRepository {
 	@Override
 	public void procurarPorCodigo(int numero) {
 		var produto = buscarNaCollection(numero);
-		
+
 		if (produto != null) {
 			produto.visualizar();
 		} else {
@@ -28,7 +29,7 @@ public class LojaController implements LojaRepository {
 		for (var produto : listaProdutos) {
 			produto.visualizar();
 		}
-		
+
 	}
 
 	@Override
@@ -36,19 +37,22 @@ public class LojaController implements LojaRepository {
 		for (var produto : listaProdutos) {
 			if (produto.getCodigo() == codigo)
 				carrinho.add(produto);
+			System.out.println(Cores.TEXT_GREEN + "O produto foi adicionado ao Carrinho!");
 		}
 	}
 
 	@Override
 	public void removerCarrinho(int codigo) {
-		var produto = buscarNaCollection(codigo);
-		
-		if (produto != null) {
-			if(listaProdutos.remove(produto) == true) {
-				System.out.println("\nO produto foi removido do Carrinho com sucesso!");
-			} else {
-				System.out.println("\nO produto não foi encontrado!");
+		if (!carrinho.isEmpty()) {
+			for (var produto : listaProdutos) {
+
+				if (produto.getCodigo() == codigo) {
+					carrinho.remove(produto);
+					System.out.println(Cores.TEXT_GREEN + "\nO produto foi removido!");
+				}
 			}
+		} else {
+			System.out.println(Cores.TEXT_RED + "\nO carrinho está vazio!");
 		}
 
 	}
@@ -58,21 +62,20 @@ public class LojaController implements LojaRepository {
 		for (var produto : carrinho) {
 			produto.visualizar();
 		}
-		
 	}
 
 	@Override
 	public void cadastrarProduto(Produto produto) {
 		listaProdutos.add(produto);
 	}
-	
+
 	public Produto buscarNaCollection(int numero) {
 		for (var produto : listaProdutos) {
 			if (produto.getCodigo() == numero) {
 				return produto;
 			}
 		}
-		
+
 		return null;
 	}
 
