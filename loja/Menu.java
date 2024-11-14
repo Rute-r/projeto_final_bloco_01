@@ -2,12 +2,23 @@ package loja;
 
 import java.util.Scanner;
 
+import loja.model.Livro;
+import loja.model.MarcaPagina;
+import loja.model.Produto;
+
 import loja.util.Cores;
 
 public class Menu {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		int opcao;
+		
+		//Teste Visualizar Livro
+		Livro l1 = new Livro(1, 1, "Livro", 25.99f, "Borboleta", "Desconhecido");
+		l1.visualizar();
+		
+		MarcaPagina m1 = new MarcaPagina(2, 2, "Marca Paginas", 1.99f, "Grande", "Rosa com bolinhas brancas");
+		m1.visualizar();
 
 		// Menu da Livraria
 		System.out.println(Cores.TEXT_YELLOW
